@@ -3,6 +3,12 @@ pipeline {
 
     stages {
         stage('UnitTest Tests - Backend') {
+            agent{
+                docker {
+                    image 'golang:latest'
+                    reuseNode true
+                }
+            }
             steps {
                 dir('bugtracker-backend') {
                     sh 'go test -v ./...'
