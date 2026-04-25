@@ -2,10 +2,16 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        
         stage('UnitTest Backend -Danh') {
             steps {
                 dir('bugtracker-backend') {
-                    go test -v ./...
+                    sh 'go test -v ./...'
                 }
             }
         }
